@@ -1,0 +1,82 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.49" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="98dp"
+            android:layout_weight="1027.00"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_hello" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="203dp"
+            android:layout_height="98dp"
+            android:layout_weight="573.51"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_hellomoney" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_orc_desp"
+        android:layout_width="106dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="10dp"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/but_inserir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:onClick="butInserir();"
+        android:text="Inserir Orçamento" />
+
+    <Button
+        android:id="@+id/but_despesa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:onClick="butDespesa();"
+        android:text="Inserir Despesa" />
+
+    <Button
+        android:id="@+id/but_lista"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="butLista();"
+        android:text="Listar Despesa" />
+
+    <Button
+        android:id="@+id/but_graf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="butGrafico();"
+        android:text="Consultar gráfico" />
+
+    <Button
+        android:id="@+id/but_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About.." />
+
+</LinearLayout>
