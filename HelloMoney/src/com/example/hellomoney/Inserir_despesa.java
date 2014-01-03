@@ -1,10 +1,8 @@
 package com.example.hellomoney;
 
-import android.os.Bundle;
-import android.os.Handler;
+
 import android.app.Activity;
 import android.app.AlertDialog;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
@@ -13,18 +11,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.io.*;
+import java.nio.Buffer;
+import java.util.Calendar;
 
+import android.os.*;
+import android.content.*;
+import android.accounts.*;
+import android.provider.*;
 
 import android.widget.*;
 
 
 public class Inserir_despesa extends Activity {
 	
-	TextView ct1,ct2;
-	EditText et1;
+	TextView ct1,ct2,ct3;
+	EditText et1,et2;
 	Button bt1;
 	public String desp;
 	public float valor;
+	public String Arquivo=  "Despesas.txt";
+	Calendar cal = Calendar.getInstance();
+	public String desc;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,12 +41,13 @@ public class Inserir_despesa extends Activity {
 		ct1 = (TextView) findViewById(R.id.text_oraca_desp);
 		ct2 = (TextView) findViewById(R.id.text_tipo_desp);
 		bt1 = (Button) findViewById(R.id.bt_guarda_desp);
+		et2 = (EditText) findViewById(R.id.editdesc_desp);
 		updateOrcamento(ct1);
 		updateDespesa(ct2);
-		
 		butGuardar();
 	}
-	
+		
+    
 	private void updateOrcamento(TextView tv) {
 		// TODO VERIFICAR SE A FICHEIRO E SE TEM VALOR
 		
@@ -55,6 +64,7 @@ public class Inserir_despesa extends Activity {
 		//final TextView tv = (TextView) findViewById(R.id.textView1);
 		Button guarda = (Button) findViewById(R.id.bt_guarda_desp);
 		final EditText et = (EditText) findViewById(R.id.text_desp);
+		et.setText(null);
 		//ON CLICK LISTENER
 		
 		guarda.setOnClickListener(new View.OnClickListener() {
@@ -62,13 +72,49 @@ public class Inserir_despesa extends Activity {
 			@Override
 			public void onClick(View v) {
 				desp = et.getText().toString(); //variavel orc com string proveniente da caixa de texto
-				valor = Float.parseFloat(desp); //variavel valor como float proveniente de orc
-				
+				if(desp.equals(""))
+				{
+					Toast.makeText(getApplicationContext(), "Tem de Inserir Valor", Toast.LENGTH_SHORT).show();
+				}
+				else
+				{
+				valor = Float.parseFloat(desp); 
 				Despesa.setValor(valor);
 				Orçamento.setValor(Orçamento.getValor()-Despesa.getValor());
+				try {
+					FileOutputStream arquivoGravar = openFileOutput("Orçameto.txt",MODE_PRIVATE);
+					String primeiro
+							= ""+Orçamento.getValor();
+					arquivoGravar.write(primeiro.getBytes());
+					arquivoGravar.close();}
+				catch(IOException erro)
+				{} 
 				Toast.makeText(getApplicationContext(), "Despesa inserido = " + Despesa.getValor() + "€", Toast.LENGTH_SHORT).show();
+				insere_arquivo();
 				startActivity(new Intent(Inserir_despesa.this,DespesaActivity.class));
+				}
 			}
 		});
-}
-}
+							}
+	private void insere_arquivo()
+	{
+		desc=et2.getText().toString();
+		int dia,ano,mes;
+		dia=cal.get(Calendar.DAY_OF_MONTH);
+		ano = cal.get(Calendar.YEAR);
+		mes= cal.get(Calendar.MONTH)+1;
+		try {
+			FileOutputStream arquivoGravar = openFileOutput("Despesas.txt",MODE_APPEND);
+			String primeiro
+					= Despesa.getTipo()+" "+Despesa.getValor()+" "+dia+" "+mes+" "+ano+" "+desc;
+			arquivoGravar.write(primeiro.getBytes());
+			arquivoGravar.write("\n".getBytes());
+			arquivoGravar.close();}
+		catch(IOException erro)
+		{}  
+  
+    }
+  
+    }
+
+

@@ -64,14 +64,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="butLista();"
-        android:text="Listar Despesa" />
+        android:text="Listar Despesa Por Categoria " />
 
     <Button
-        android:id="@+id/but_graf"
+        android:id="@+id/but_list_temp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="butGrafico();"
-        android:text="Consultar gráfico" />
+        android:text="Listar Despesa Por Tempo" />
 
     <Button
         android:id="@+id/but_about"

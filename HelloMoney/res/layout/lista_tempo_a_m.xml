@@ -5,60 +5,53 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/titulodesp"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Inserir despesa"
+        android:text="Lista Por Tempo"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/text_oraca_desp"
+        android:id="@+id/textlista_m_a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/text_tipo_desp"
+        android:id="@+id/texttipolista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"
+        android:text="Tipo :"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/text_desp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Insira valor monetário €"
-        android:inputType="numberDecimal" />
 
     <EditText
         android:id="@+id/editdesc_desp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Breve descrição despesa" >
+        android:hint="Insira mes(1 a 12) ou ano ( >= 2014) "
+        android:inputType="number" >
 
         <requestFocus />
     </EditText>
 
     <Button
-        android:id="@+id/bt_guarda_desp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gravar" />
-
-    <ScrollView
-        android:id="@+id/scrollView1"
+        android:id="@+id/bt_aceita_lista"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:text="Aceitar" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-        </LinearLayout>
-    </ScrollView>
+    <TextView
+        android:id="@+id/textViewlistaam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.75"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/btlista_m_a_conc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Concluir" />
 
 </LinearLayout>

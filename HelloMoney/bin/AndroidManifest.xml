@@ -27,6 +27,11 @@
         <activity android:name="com.example.hellomoney.InserirActivity"></activity>
         <activity android:name="com.example.hellomoney.OrcamentoThread"></activity>
         <activity android:name="Inserir_despesa"></activity>
+        <activity android:name="Lista"></activity>
+        <activity android:name="Listar_despesas"></activity>
+        <activity android:name="lista_tempo"></activity>
+        <activity android:name="lista_dia"></activity>
+        <activity android:name="Lista_tem_a_m"></activity>
     </application>
 
 </manifest>

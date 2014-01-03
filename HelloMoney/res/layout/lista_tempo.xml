@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/titulo_l_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lista Por Tempo"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/orc_lista_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/bt_lista_t_mes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mes" />
+
+    <Button
+        android:id="@+id/bt_lista_t_ano"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ano" />
+
+    <Button
+        android:id="@+id/bt_lista_t_menuini"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Menu Inicial" />
+
+</LinearLayout>

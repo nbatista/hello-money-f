@@ -1,6 +1,8 @@
 package com.example.hellomoney;
 
-import android.os.Bundle;
+import android.os.*;
+import java.io.*;
+
 import android.os.Handler;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,11 +20,27 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 	private Handler handler;
 	private boolean Running = true;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		final TextView tv = (TextView) findViewById(R.id.text_orc_desp);
+		File ler_arquivo = getFileStreamPath("Despesas.txt");	
+		if(ler_arquivo.exists())
+		{
+			String str;
+			try{
+			FileInputStream le_arq = openFileInput("Orçameto.txt");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(le_arq));
+	        if (le_arq!=null) {                         
+	            str = reader.readLine();  
+            	Orçamento.setValor(Float.parseFloat(str));          	
+            	le_arq.close();
+			}
+			}
+			catch(IOException erro){};
+			}
 		butInserir();
 		butDespesa();
 		butLista();
@@ -127,21 +145,20 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				//startActivity(new Intent(MainActivity.this,ListarActivity.class));
-				Toast.makeText(getApplicationContext(), "Função não implementada!", Toast.LENGTH_SHORT).show();
+				startActivity(new Intent(MainActivity.this,Listar_despesas.class));
+		
 			}
 			
 		});
 	}
 	
 	private void butGrafico() {
-		Button graf = (Button) findViewById(R.id.but_graf);
+		Button graf = (Button) findViewById(R.id.but_list_temp);
 		graf.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				//startActivity(new Intent(MainActivity.this,GrafActivity.class));
-				Toast.makeText(getApplicationContext(), "Função não implementada!", Toast.LENGTH_SHORT).show();
+				startActivity(new Intent(MainActivity.this,lista_tempo.class));
 			}
 			
 		});
@@ -164,8 +181,8 @@ public class MainActivity extends Activity {
 	
 	private void showOneButtonDialog(){
 		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-		dialogBuilder.setTitle("Hello Money V0.1");
-		dialogBuilder.setMessage("ISEC\n - Engenharia Informática\n - Gestão Projecto Software\n - Trabalho desenvolvido por Tiago Pereira e Cristiano Malaquias");
+		dialogBuilder.setTitle("Hello Money ");
+		dialogBuilder.setMessage("ISEC\n - Engenharia Informática\n - Gestão Projecto Software\n - Trabalho desenvolvido por \nTiago Pereira, Cristiano Malaquias,João Pimentel e Diogo Ribeiro");
 		dialogBuilder.setPositiveButton("Voltar. .",new DialogInterface.OnClickListener(){
 			
 				public void onClick(DialogInterface dialog, int which){

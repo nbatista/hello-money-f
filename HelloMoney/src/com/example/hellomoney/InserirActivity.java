@@ -1,5 +1,8 @@
 package com.example.hellomoney;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import android.app.Activity;
 import com.example.hellomoney.Orçamento;
 import com.example.hellomoney.MainActivity;
@@ -38,13 +41,29 @@ public class InserirActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				orc = et.getText().toString(); //variavel orc com string proveniente da caixa de texto
+				if(orc.equals(""))
+				{
+					Toast.makeText(getApplicationContext(), "Tem de Inserir Valor", Toast.LENGTH_SHORT).show();
+				}
+				else
+				{
 				valor = Float.parseFloat(orc); //variavel valor como float proveniente de orc
 						 
 				if(Orçamento.getValor() == 0){Orçamento.setValor(valor);
-				Toast.makeText(getApplicationContext(), "Orçamento inserido = " + Orçamento.getValor() + "€", Toast.LENGTH_SHORT).show();}
+				Toast.makeText(getApplicationContext(), "Orçamento inserido = " + Orçamento.getValor() + "€", Toast.LENGTH_SHORT).show();
+				}
 				else {Orçamento.addValor(valor);
 				Toast.makeText(getApplicationContext(), "Orçamento actual = " + Orçamento.getValor() + "€", Toast.LENGTH_SHORT).show();}
+				try {
+					FileOutputStream arquivoGravar = openFileOutput("Orçameto.txt",MODE_PRIVATE);
+					String primeiro
+							= ""+Orçamento.getValor();
+					arquivoGravar.write(primeiro.getBytes());
+					arquivoGravar.close();}
+				catch(IOException erro)
+				{} 
 				finish();
+				}
 			}
 		});
 		
