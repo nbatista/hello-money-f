@@ -22,10 +22,11 @@ import android.widget.*;
 
 public class Lista_tem_a_m extends Activity{
 	TextView t1,t2,t3;
-	EditText et;
+	EditText et,et2;
 	Button bt1,bt2;
 	public float total;
-	
+	public String orc;
+	public float mes,ano;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.lista_tempo_a_m);
@@ -35,7 +36,12 @@ public class Lista_tem_a_m extends Activity{
 		t2 = (TextView) findViewById(R.id.texttipolista);
 		t3 = (TextView) findViewById(R.id.textViewlistaam);
 		et = (EditText) findViewById(R.id.editdesc_desp);
+		et2 =(EditText) findViewById(R.id.editTextano);
 		t3.setMovementMethod(new ScrollingMovementMethod());
+		if(Despesa.getTipo().equals("Ano"))
+			et.setVisibility(View.GONE);
+		if(Despesa.getTipo().equals("Mes"))
+			et.setVisibility(View.VISIBLE);
 		updateOrcamento(t1);
 		updateLista(t2);
 		Listar();
@@ -49,17 +55,17 @@ public class Lista_tem_a_m extends Activity{
 			@Override
 			public void onClick(View arg0) {
 				t3.setText(null);
-				String orc = et.getText().toString(); 
-				if(orc.equals(""))
-				{
-					Toast.makeText(getApplicationContext(), "Tem de Inserir Valor", Toast.LENGTH_SHORT).show();
-				}
-				else
-				{
-				float valor = Float.parseFloat(orc);
 				if(Despesa.getTipo().equals("Ano"))
 				{
-					if(valor >= 2014)
+					orc = et2.getText().toString();
+					if(orc.equals(""))
+					{
+						Toast.makeText(getApplicationContext(), "Tem de Inserir Valor", Toast.LENGTH_SHORT).show();
+					}
+					else
+					{
+					ano = Float.parseFloat(orc);
+					if(ano >= 2014)
 					{
 						File ler_arquivo = getFileStreamPath("Despesas.txt");	
 						if(ler_arquivo.exists())
@@ -72,9 +78,9 @@ public class Lista_tem_a_m extends Activity{
 					        	total=0;
 					            while ((str = reader.readLine()) != null) { 
 					            	String[] separa = str.split(" ");
-					            	total += Float.parseFloat(separa[1]);
 					            	float val_c = Float.parseFloat(separa[4].toString());
-					            	if(val_c == valor){
+					            	if(val_c == ano){
+					            		total += Float.parseFloat(separa[1]);
 					            		t3.append(separa[0]+"\t"+separa[1]+"€\t"+separa[2]+"/"+separa[3]+"/"+separa[4]);
 					            		if(separa.length>5)
 					            		{
@@ -94,13 +100,27 @@ public class Lista_tem_a_m extends Activity{
 							}
 							catch(IOException erro){};
 							}
-					}
+				}
 					else
-					{Toast.makeText(getApplicationContext(), "Valor igual ou acima de 2014", Toast.LENGTH_SHORT).show();}
+					{
+						Toast.makeText(getApplicationContext(), "Ano tem de ser superior a 2014", Toast.LENGTH_SHORT).show();
+					}
+				}
 				}
 				if(Despesa.getTipo().equals("Mes"))
 				{
-					if(valor >= 1 && valor <=12)
+					orc = et2.getText().toString();
+					String orc1 = et2.getText().toString();
+					orc1 = et.getText().toString();
+					if(orc.equals("") || orc1.equals(""))
+					{
+						Toast.makeText(getApplicationContext(), "Tem de inserir ano e mes", Toast.LENGTH_SHORT).show();
+					}
+					else
+					{
+						ano = Float.parseFloat(orc);
+						mes = Float.parseFloat(orc1);
+					if(mes >= 1 && mes <=12 && ano >= 2014)
 					{
 						File ler_arquivo = getFileStreamPath("Despesas.txt");	
 						if(ler_arquivo.exists())
@@ -113,9 +133,11 @@ public class Lista_tem_a_m extends Activity{
 							if (le_arq!=null) {                         
 					            while ((str = reader.readLine()) != null) { 
 					            	String[] separa = str.split(" ");
-					            	total += Float.parseFloat(separa[1]);
 					            	float val_c = Float.parseFloat(separa[3]);
-					            	if(val_c==valor)
+					            	float val_ca=Float.parseFloat(separa[4]);
+					            	if(val_c==mes && val_ca==ano)
+					            	{
+					            		total += Float.parseFloat(separa[1]);
 					            		t3.append(separa[0]+"\t"+separa[1]+"€\t"+separa[2]+"/"+separa[3]+"/"+separa[4]);
 				            				if(separa.length>5)
 				            				{
@@ -127,6 +149,8 @@ public class Lista_tem_a_m extends Activity{
 				            						t3.append(">");
 				            				}
 				            				t3.append("\n");
+					            	}
+					    
 					            }       	
 					        le_arq.close();
 					        t3.append("Total --> "+total+"€");
@@ -136,10 +160,9 @@ public class Lista_tem_a_m extends Activity{
 							}
 					}
 					else
-					{Toast.makeText(getApplicationContext(), "Valor entre 1 e 14", Toast.LENGTH_SHORT).show();}
+					{Toast.makeText(getApplicationContext(), "Valor mes entre 1 e 12 e ano maior que 2014", Toast.LENGTH_SHORT).show();}
 				}
-				
-			}
+				}
 			}
 		});
 	}

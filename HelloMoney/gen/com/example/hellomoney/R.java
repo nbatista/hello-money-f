@@ -30,8 +30,8 @@ public final class R {
     public static final class id {
         public static final int LinearLayout1=0x7f080000;
         public static final int SCROLLER_ID=0x7f08001a;
-        public static final int action_settings=0x7f08002f;
-        public static final int bt_aceita_lista=0x7f08002c;
+        public static final int action_settings=0x7f080030;
+        public static final int bt_aceita_lista=0x7f08002d;
         public static final int bt_guarda_desp=0x7f080016;
         public static final int bt_l_ali=0x7f080021;
         public static final int bt_l_hab=0x7f080020;
@@ -46,7 +46,7 @@ public final class R {
         public static final int btalim=0x7f08000d;
         public static final int btconc=0x7f08001d;
         public static final int bthab=0x7f08000b;
-        public static final int btlista_m_a_conc=0x7f08002e;
+        public static final int btlista_m_a_conc=0x7f08002f;
         public static final int btnaopre=0x7f08000f;
         public static final int btvia=0x7f08000e;
         public static final int btvic=0x7f08000c;
@@ -56,6 +56,7 @@ public final class R {
         public static final int but_inserir=0x7f080004;
         public static final int but_list_temp=0x7f080007;
         public static final int but_lista=0x7f080006;
+        public static final int editTextano=0x7f08002c;
         public static final int editdesc_desp=0x7f080015;
         public static final int imageView1=0x7f080001;
         public static final int imageView2=0x7f080002;
@@ -64,7 +65,7 @@ public final class R {
         public static final int scrollView1=0x7f080017;
         public static final int textView1=0x7f080029;
         public static final int textViewlista=0x7f08001c;
-        public static final int textViewlistaam=0x7f08002d;
+        public static final int textViewlistaam=0x7f08002e;
         public static final int textViewtipodespesa=0x7f080019;
         public static final int text_desp=0x7f080014;
         public static final int text_lista_orc=0x7f08001b;

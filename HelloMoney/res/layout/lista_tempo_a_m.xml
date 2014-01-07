@@ -25,11 +25,19 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
+        android:id="@+id/editTextano"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+         android:hint="Insira ano >= 2014"
+        android:inputType="number" />
+
+    <EditText
         android:id="@+id/editdesc_desp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Insira mes(1 a 12) ou ano ( >= 2014) "
+        android:hint="Insira mes(1 a 12)"
         android:inputType="number" >
 
         <requestFocus />
