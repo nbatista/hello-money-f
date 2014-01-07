@@ -1,5 +1,7 @@
 package com.example.hellomoney;
 
+import java.text.DecimalFormat;
+
 import android.widget.TextView;
 
 public class Orçamento {
@@ -39,10 +41,8 @@ public class Orçamento {
 	public static void update(TextView tv){
 		
 		double textview;
-		String resid;
 		textview=Orçamento.getValor();
-		resid = Double.toString(textview);
-		tv.setText(resid + " €");
+		tv.setText(String.format("%.2f €",textview));
 	}
 
 }

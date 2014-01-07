@@ -24,6 +24,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Orçamento.setValor(0);
 		setContentView(R.layout.activity_main);
 		final TextView tv = (TextView) findViewById(R.id.text_orc_desp);
 		File ler_arquivo = getFileStreamPath("Despesas.txt");	
@@ -34,8 +35,8 @@ public class MainActivity extends Activity {
 			FileInputStream le_arq = openFileInput("Orçameto.txt");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(le_arq));
 	        if (le_arq!=null) {                         
-	            str = reader.readLine();  
-            	Orçamento.setValor(Float.parseFloat(str));          	
+	            str = reader.readLine();
+            	Orçamento.setValor(Double.parseDouble(str));          	
             	le_arq.close();
 			}
 			}
@@ -75,7 +76,7 @@ public class MainActivity extends Activity {
 						@Override
 						public void run() {
 							// TODO Auto-generated method stub
-							tv.setText(String.valueOf(Orçamento.getValor()) + " €");
+							tv.setText(String.format("%.2f €",Orçamento.getValor()));
 						}
 						
 				});

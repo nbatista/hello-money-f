@@ -29,7 +29,7 @@ public class Inserir_despesa extends Activity {
 	EditText et1,et2;
 	Button bt1;
 	public String desp;
-	public float valor;
+	public double valor;
 	public String Arquivo=  "Despesas.txt";
 	Calendar cal = Calendar.getInstance();
 	public String desc;
@@ -78,7 +78,15 @@ public class Inserir_despesa extends Activity {
 				}
 				else
 				{
-				valor = Float.parseFloat(desp); 
+				valor = Double.parseDouble(desp);
+				if(valor <0.01 || valor>2000)
+				{
+					Toast.makeText(getApplicationContext(), "O valor tem de ser entre 0.1€ e 2000 €", Toast.LENGTH_SHORT).show();
+					et.setText(null);
+					et2.setText(null);
+				}
+				else
+				{
 				Despesa.setValor(valor);
 				Orçamento.setValor(Orçamento.getValor()-Despesa.getValor());
 				try {
@@ -92,6 +100,7 @@ public class Inserir_despesa extends Activity {
 				Toast.makeText(getApplicationContext(), "Despesa inserido = " + Despesa.getValor() + "€", Toast.LENGTH_SHORT).show();
 				insere_arquivo();
 				startActivity(new Intent(Inserir_despesa.this,DespesaActivity.class));
+				}
 				}
 			}
 		});

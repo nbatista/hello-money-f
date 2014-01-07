@@ -49,7 +49,7 @@ public class InserirActivity extends Activity {
 				{
 
 				valor = Double.parseDouble(orc); //variavel valor como Double proveniente de orc
-				if(valor <= 0.1 || valor >= 4000 )
+				if(valor < 0.01 || valor > 4000 )
 				{
 					Toast.makeText(getApplicationContext(), "O valor tem de ser entre 0.1€ e 4000 €", Toast.LENGTH_SHORT).show();
 					et.setText(null);
@@ -64,7 +64,7 @@ public class InserirActivity extends Activity {
 				try {
 					FileOutputStream arquivoGravar = openFileOutput("Orçameto.txt",MODE_PRIVATE);
 					String primeiro
-							= ""+Orçamento.getValor();
+							=""+Orçamento.getValor();
 					arquivoGravar.write(primeiro.getBytes());
 					arquivoGravar.close();}
 				catch(IOException erro)
