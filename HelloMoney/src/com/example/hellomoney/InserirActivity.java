@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class InserirActivity extends Activity {
 	
 	public String orc;
-	public float valor;
+	public double valor;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +47,15 @@ public class InserirActivity extends Activity {
 				}
 				else
 				{
-				valor = Float.parseFloat(orc); //variavel valor como float proveniente de orc
-						 
+
+				valor = Double.parseDouble(orc); //variavel valor como Double proveniente de orc
+				if(valor <= 0.1 || valor >= 4000 )
+				{
+					Toast.makeText(getApplicationContext(), "O valor tem de ser entre 0.1€ e 4000 €", Toast.LENGTH_SHORT).show();
+					et.setText(null);
+				}
+				else
+				{
 				if(Orçamento.getValor() == 0){Orçamento.setValor(valor);
 				Toast.makeText(getApplicationContext(), "Orçamento inserido = " + Orçamento.getValor() + "€", Toast.LENGTH_SHORT).show();
 				}
@@ -63,6 +70,7 @@ public class InserirActivity extends Activity {
 				catch(IOException erro)
 				{} 
 				finish();
+				}
 				}
 			}
 		});
