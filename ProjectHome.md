@@ -1,0 +1,1 @@
+Software que controla as finanças de um estudante
